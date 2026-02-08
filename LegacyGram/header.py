@@ -22,4 +22,8 @@ remove star levels
 remove premium emoji in nickname
 remove profile colors in Profile (already implemented in replies via Extera)
 remove some bulletins? 
+
+project stuff TODO:
+configure ruff and toml file
+do normal import instead this
 """
