@@ -29,6 +29,7 @@ def get_premium_sub_page() -> List[Any]:
 def get_gifts_sub_page() -> List[Any]:
     return [
         # Header(text="This is a Sub-Page with functions related to Gifts"),
+        Header(text="Gifts Tabs, Buttons and etc..."),
         Switch(
             key="gift_button_in_chats",
             text="Disable gift button in chats",
@@ -46,6 +47,12 @@ def get_gifts_sub_page() -> List[Any]:
             text="Disable stars rating in profile",
             default=False,
             link_alias="stars_rating_in_profile"
+        ),
+        Switch(
+            key="send_gift_action_bar_in_profile",
+            text="Disable Send Gift button from action bar",
+            default=False,
+            link_alias="send_gift_action_bar_in_profile"
         )
     ]
 
@@ -74,7 +81,7 @@ def get_main_settings_list(plugin: BasePlugin) -> List[Any]:
         )
     ]
 
-
+# helper functions
 def switch_rows(view: View) -> None :
     global plugin_instance
     row_keys = [
