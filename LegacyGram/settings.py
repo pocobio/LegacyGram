@@ -32,25 +32,25 @@ def get_gifts_sub_page() -> List[Any]:
         Header(text="Gifts Tabs, Buttons and etc..."),
         Switch(
             key="gift_button_in_chats",
-            text="Disable gift button in chats",
+            text="Disable Gift Button in Chats",
             default=False,
             link_alias="gift_button_in_chats"
         ),
         Switch(
             key="gifts_tab_in_profile",
-            text="Disable gifts tab in profile",
+            text="Disable Gifts Tab in Profile",
             default=False,
             link_alias="gifts_tab_in_profile"
         ),
         Switch(
             key="stars_rating_in_profile",
-            text="Disable stars rating in profile",
+            text="Disable Stars Rating in Profile",
             default=False,
             link_alias="stars_rating_in_profile"
         ),
         Switch(
             key="send_gift_action_bar_in_profile",
-            text="Disable Send Gift button from action bar",
+            text="Disable Send Gift button from Action Bar",
             default=False,
             link_alias="send_gift_action_bar_in_profile"
         )

@@ -4,7 +4,7 @@ from android_utils import log
 from typing import List, Any
 from hook_utils import find_class, set_private_field, get_private_field
 from ui.bulletin import BulletinHelper
-from java import jint
+from java import jint, jfloat
 from android.view import View
 
 __name__ = "LegacyGram"
@@ -17,8 +17,6 @@ __min_version__ = "12.1.1"
 
 """
 TODO:
-remove send gift button from dropdown menu in Profile
-remove star levels
 remove premium emoji in nickname
 remove profile colors in Profile (already implemented in replies via Extera)
 remove some bulletins? 
