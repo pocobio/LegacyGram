@@ -12,7 +12,7 @@ __description__ = "A highly customizable plugin to remove paid and bloated featu
 __version__ = "0.0.7"
 __id__ = "legacygram"
 __author__ = "@wepinek"
-__icon__ = "exteraPlugins/1"
+__icon__ = "LegacyGram/0"
 __min_version__ = "12.1.1"
 
 """
@@ -25,4 +25,5 @@ localization (normal eng and ru)
 project stuff TODO:
 configure ruff and toml file
 do normal import instead this
+android and java typings? I don't see any
 """
