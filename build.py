@@ -54,7 +54,10 @@ def build():
             print(f"⚠️ Warning: Priority directory '{dir_name}' is empty or not found in {SRC_DIR}.")
 
     for file_name in all_files:
-        if file_name not in PRIORITY_FILES and file_name not in LAST_FILES and os.path.basename(file_name) != "__init__.py":
+        if (file_name not in PRIORITY_FILES and
+                file_name not in LAST_FILES and
+                file_name not in files_to_process and
+                os.path.basename(file_name) != "__init__.py"):
             files_to_process.append(file_name)
 
     for file_name in LAST_FILES:
