@@ -1,8 +1,7 @@
 import ast
 import re
-from pathlib import Path
-from typing import List, Set
 from collections import defaultdict
+from pathlib import Path
 
 # TODO uv version <version from header>
 
@@ -33,7 +32,7 @@ COPYRIGHT_STRING = (
 captured_imports = defaultdict(set)
 captured_from_imports = defaultdict(set)
 
-def get_all_python_files(src: Path) -> List[Path]:
+def get_all_python_files(src: Path) -> list[Path]:
     return [
         p.relative_to(src)
         for p in src.rglob("*.py")
@@ -41,9 +40,9 @@ def get_all_python_files(src: Path) -> List[Path]:
     ]
 
 
-def get_merge_order(all_files: List[Path]) -> List[Path]:
+def get_merge_order(all_files: list[Path]) -> list[Path]:
     order = []
-    processed: Set[Path] = set()
+    processed: set[Path] = set()
 
     # Priority Files
     for pf in PRIORITY_FILES:
@@ -109,11 +108,11 @@ def generate_imports_block() -> str:
     return "\n".join(lines) + "\n"
 
 
-def process_file_content(file_path: Path) -> List[str]:
+def process_file_content(file_path: Path) -> list[str]:
     """ Removes imports and @ignore lines """
     processed_lines = []
 
-    with open(SRC_DIR / file_path, "r", encoding="utf-8") as f:
+    with open(SRC_DIR / file_path, encoding="utf-8") as f:
         lines = f.readlines()
 
     for line in lines:
@@ -133,13 +132,15 @@ def process_file_content(file_path: Path) -> List[str]:
         processed_lines.append(line)
 
     file_code = "".join(processed_lines)
-
     try:
         ast.parse(file_code)
     except SyntaxError as e:
         raise SyntaxError(f"❌ Syntax Error in file: {file_path} line {e.lineno}: {e.msg}") from e
 
-    return processed_lines
+    cleaned_code = file_code.strip()
+    cleaned_code = re.sub(r'\n{3,}', '\n\n', cleaned_code)
+
+    return [cleaned_code + "\n"]
 
 
 def build():
