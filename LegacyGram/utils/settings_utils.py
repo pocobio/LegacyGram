@@ -5,16 +5,16 @@ from typing import Callable, Any
 def Switch(key: str,
            text: str,
            default: bool = False,
-           subtext: str = ...,
-           icon: str = ...,
-           on_change: Callable[[bool], None] = ...,
-           on_long_click: Callable[[View], None] = ...,
-           link_alias: str = ...
+           subtext: str = None,
+           icon: str = None,
+           on_change: Callable[[bool], None] = None,
+           on_long_click: Callable[[View], None] = None,
+           link_alias: str = None
            ) -> BaseSwitch:
     """
     Uses key for link_alias, default is False
     """
-    link_alias = key if link_alias is ... else link_alias
+    link_alias = key if link_alias is None else link_alias
     return BaseSwitch(
         key=key,
         text=text,
