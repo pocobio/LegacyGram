@@ -3,8 +3,8 @@ from typing import List, Any
 from android.view import View
 from LegacyGram.utils.extera_utils import open_extera_setting
 from LegacyGram.main import LegacyGramPlugin
-from LegacyGram.utils.version_utils import get_client_version
-
+from LegacyGram.utils.java_utils import get_client_version, open_url
+from LegacyGram.data.constants import GITHUB_URL
 
 def get_general_sub_page() -> List[Any]:
     return [
@@ -74,6 +74,10 @@ def get_about_sub_page() -> List[Any]:
         Text(
             text=get_client_version()
         ),
+        Text(
+            text="Github Repository",
+            on_click=open_url_view(GITHUB_URL)
+        )
     ]
 
 def get_main_settings_list() -> List[Any]:
@@ -127,4 +131,9 @@ def switch_rows(view: View) -> None :
 def open_extera_tab(tab_name: str):
     def callback(view: View):
         open_extera_setting(tab_name)
+    return callback
+
+def open_url_view(url: str):
+    def callback(view: View):
+        open_url(url)
     return callback

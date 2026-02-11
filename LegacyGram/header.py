@@ -22,6 +22,7 @@ remove profile colors in Profile (already implemented in replies via Extera)
 remove some bulletins? 
 localization (normal eng and ru)
 take etg icon from current icon pack if exist
+add About Plugin page
 
 project stuff TODO:
 configure ruff and toml file
