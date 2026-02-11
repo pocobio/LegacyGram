@@ -4,10 +4,10 @@ from base_plugin import BasePlugin
 
 from LegacyGram.features.gift_button import register_gift_button
 from LegacyGram.ui.settings import get_main_settings_list
-from features.action_bar import register_action_bar
-from features.star_rating import register_star_rating
-from features.settings_menu import register_settings_menu
-from features.media_layout import register_media_layout
+from LegacyGram.features.action_bar import register_action_bar
+from LegacyGram.features.star_rating import register_star_rating
+from LegacyGram.features.settings_menu import register_settings_menu
+from LegacyGram.features.media_layout import register_media_layout
 from typing import Optional
 
 

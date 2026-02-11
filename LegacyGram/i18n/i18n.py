@@ -1,5 +1,5 @@
 from hook_utils import find_class
-from locales import STRINGS
+from LegacyGram.i18n.locales import STRINGS
 
 _cached_lang: str | None = None
 
