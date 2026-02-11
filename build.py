@@ -1,5 +1,7 @@
 import ast
 import re
+import subprocess
+import sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -7,7 +9,7 @@ from pathlib import Path
 
 """
 I don't love using vars like: a b c
-but it's indeed here
+but it's really needed here
 p - path
 f - file
 pd - priority dir
@@ -32,12 +34,25 @@ COPYRIGHT_STRING = (
 captured_imports = defaultdict(set)
 captured_from_imports = defaultdict(set)
 
+
+def run_linter():
+    print("🔍 Running Ruff...")
+
+    subprocess.run(["ruff", "check", ".", "--fix"], capture_output=True)
+    subprocess.run(["ruff", "format", "."], capture_output=True)
+
+    result = subprocess.run(["ruff", "check", "."], capture_output=True, text=True)
+
+    if result.returncode != 0:
+        print(f"❌ Issues found:\n{result.stdout}")
+        return False
+
+    print("✅ Code is clean. Proceeding to build...")
+    return True
+
+
 def get_all_python_files(src: Path) -> list[Path]:
-    return [
-        p.relative_to(src)
-        for p in src.rglob("*.py")
-        if p.name != "__init__.py"
-    ]
+    return [p.relative_to(src) for p in src.rglob("*.py") if p.name != "__init__.py"]
 
 
 def get_merge_order(all_files: list[Path]) -> list[Path]:
@@ -53,19 +68,13 @@ def get_merge_order(all_files: list[Path]) -> list[Path]:
 
     # Priority Directories
     for pd in PRIORITY_DIRS:
-        dir_files = sorted([
-            f for f in all_files
-            if f.parts[0] == pd and f not in processed
-        ])
+        dir_files = sorted([f for f in all_files if f.parts[0] == pd and f not in processed])
         order.extend(dir_files)
         processed.update(dir_files)
 
     # Everything else (except LAST_FILES)
     last_paths = {Path(f) for f in LAST_FILES}
-    others = sorted([
-        f for f in all_files
-        if f not in processed and f not in last_paths
-    ])
+    others = sorted([f for f in all_files if f not in processed and f not in last_paths])
     order.extend(others)
     processed.update(others)
 
@@ -102,14 +111,14 @@ def generate_imports_block() -> str:
         lines.append(f"import {mod}")
 
     for mod in sorted(captured_from_imports.keys()):
-        names = sorted(list(captured_from_imports[mod]))
+        names = sorted(captured_from_imports[mod])
         lines.append(f"from {mod} import {', '.join(names)}")
 
     return "\n".join(lines) + "\n"
 
 
 def process_file_content(file_path: Path) -> list[str]:
-    """ Removes imports and @ignore lines """
+    """Removes imports and @ignore lines"""
     processed_lines = []
 
     with open(SRC_DIR / file_path, encoding="utf-8") as f:
@@ -122,7 +131,7 @@ def process_file_content(file_path: Path) -> list[str]:
             continue
 
         is_import = stripped.startswith(("import ", "from "))
-        is_internal = stripped.startswith(("import LegacyGram", "from LegacyGram", "from ."))
+        is_internal = stripped.startswith(("import LegacyGram", "from LegacyGram"))
 
         if is_import:
             if not is_internal:
@@ -138,7 +147,7 @@ def process_file_content(file_path: Path) -> list[str]:
         raise SyntaxError(f"❌ Syntax Error in file: {file_path} line {e.lineno}: {e.msg}") from e
 
     cleaned_code = file_code.strip()
-    cleaned_code = re.sub(r'\n{3,}', '\n\n', cleaned_code)
+    cleaned_code = re.sub(r"\n{3,}", "\n\n", cleaned_code)
 
     return [cleaned_code + "\n"]
 
@@ -149,6 +158,9 @@ def build():
     if not SRC_DIR.exists():
         print(f"❌ Error: Source directory '{SRC_DIR}' not found!")
         return
+
+    if not run_linter():
+        sys.exit(1)
 
     all_files = get_all_python_files(SRC_DIR)
     merge_order = get_merge_order(all_files)
