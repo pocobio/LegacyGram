@@ -1,3 +1,4 @@
+from client_utils import get_last_fragment
 from hook_utils import find_class
 from ui.bulletin import BulletinHelper
 
@@ -15,9 +16,12 @@ def get_client_version() -> str:
 
 def open_url(url: str):
     try:
-        ApplicationLoader = find_class("org.telegram.messenger.ApplicationLoader")
-        context = ApplicationLoader.applicationContext
-
+        current_fragment = get_last_fragment()
+        if not current_fragment:
+            return
+        context = current_fragment.getParentActivity()
+        if not context:
+            return
         Browser = find_class("org.telegram.messenger.browser.Browser")
         if Browser:
             # or we can use openUrlInSystemBrowser,
