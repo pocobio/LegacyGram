@@ -2,27 +2,25 @@ from hook_utils import find_class
 
 from LegacyGram.i18n.locales import STRINGS
 
-_cached_lang: str | None = None
-
 
 def get_system_language() -> str:
-    global _cached_lang
-    if not _cached_lang:
-        try:
-            Locale = find_class("java.util.Locale")
-            lang = Locale.getDefault().getLanguage()
-            _cached_lang = lang if lang in STRINGS else "en"
-        except Exception:
-            _cached_lang = "en"
+    try:
+        Locale = find_class("java.util.Locale")
+        lang = Locale.getDefault().getLanguage()
+        if lang in STRINGS:
+            return lang
+    except Exception:
+        pass
 
-    return _cached_lang
+    return "en"
 
 
-def i(key: str) -> str:
+def t(key: str, *args) -> str:
+    """Translates and replaces {0}, {1} placeholders with provided arguments"""
     lang = get_system_language()
     target_locale = STRINGS.get(lang, STRINGS.get("en", {}))
     result = target_locale.get(key)
     if result is None:
-        result = f"MISSING: {key}"
+        return f"MISSING: {key}"
 
-    return result
+    return result.format(*args)
