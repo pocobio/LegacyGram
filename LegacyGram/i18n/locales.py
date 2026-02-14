@@ -41,7 +41,7 @@ STRINGS = {
         # --- About Sub-Page ---
         "client_version": "Client version: {0}",
         "github_repository": "Github Repository",
-        "github_info": "Modular architecture with custom build script, Ruff linting, and typing stubs for java and android modules.",
+        "github_info": "Zero Telemetry, Python modular architecture with custom build script, Ruff linting, and typing stubs for java and android modules",
 
         # --- Main Settings List ---
         "settings_related_to": "Setting related to...",
