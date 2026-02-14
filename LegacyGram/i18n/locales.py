@@ -28,7 +28,7 @@ STRINGS = {
         "hide_stories": "Hide Stories",
         "hide_action_bar_status": "Hide Status",
         "profile_tabs": "Profile Tabs",
-        "hide_stories_tab": "Hide Stories Tab in Profile",
+        "hide_stories_tab": "[BROKEN] Hide Stories Tab in Profile",
 
         # --- Gifts Sub-Page ---
         "gifts_header": "Gifts Tabs, Buttons and etc...",
