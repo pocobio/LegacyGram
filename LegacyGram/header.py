@@ -4,7 +4,7 @@ __version__ = "0.0.12"
 __id__ = "legacygram"
 __author__ = "@wepinek"
 __icon__ = "LegacyGram/0"
-__min_version__ = "12.2.10"  # TODO: i sure about 12.1.1 (need support for icon packs and other), but not sure for adding support lower
+__min_version__ = "12.1.1"  # TODO: i sure about 12.1.1 (need support for icon packs and other), but not sure for adding support lower
 
 """
 TODO:
@@ -18,4 +18,5 @@ remove cached_lang (cuz user can change language without reloading plugins and c
 
 project stuff TODO:
 version stuff in toml (building)
+build .plugin
 """
