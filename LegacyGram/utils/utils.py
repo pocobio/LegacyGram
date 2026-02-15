@@ -14,7 +14,14 @@ def get_client_version() -> str:
     return "Unknown"
 
 
-def open_url(url: str):
+def parse_version(version: str):
+    try:
+        return tuple(map(int, version.split(".")))
+    except ValueError:
+        return 0, 0, 0
+
+
+def open_url(url: str) -> None:
     try:
         current_fragment = get_last_fragment()
         if not current_fragment:
