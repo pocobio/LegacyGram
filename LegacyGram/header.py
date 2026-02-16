@@ -4,17 +4,16 @@ __version__ = "0.0.12"
 __id__ = "legacygram"
 __author__ = "@wepinek"
 __icon__ = "LegacyGram/0"
-__min_version__ = "12.1.1"  # TODO: i sure about 12.1.1 (need support for icon packs and other), but not sure for adding support lower
+__min_version__ = "12.1.1"
 
 """
 TODO:
 remove premium emoji in nickname
 remove profile colors in Profile (already implemented in replies via Extera)
+remove gift button in profile
 remove some bulletins?
 localization (normal eng and ru)
 take etg icon from current icon pack if exist (check for versions since here new icon pack system)
-add About Plugin page
-remove cached_lang (cuz user can change language without reloading plugins and client)
 
 project stuff TODO:
 version stuff in toml (building)
