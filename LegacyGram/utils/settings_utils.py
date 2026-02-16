@@ -4,6 +4,11 @@ from android.view import View
 from android_utils import log
 from ui.settings import Switch as BaseSwitch
 
+from LegacyGram.data.constants import Keys
+from LegacyGram.main import LegacyGramPlugin
+from LegacyGram.utils.extera_utils import open_extera_setting
+from LegacyGram.utils.utils import open_url
+
 
 def Switch(
     key: str,
@@ -27,3 +32,35 @@ def check_version(version: str) -> bool:
     if version == "12.1.1":
         return False
     return True
+
+
+def switch_rows(view: View) -> None:
+    plugin_instance = LegacyGramPlugin.get_instance()
+    row_keys = [
+        Keys.General.hide_premium_row,
+        Keys.General.hide_stars_row,
+        Keys.General.hide_ton_row,
+        Keys.General.hide_business_row,
+        Keys.General.hide_send_a_gift_row,
+    ]
+
+    any_disabled = any(not plugin_instance.get_setting(key, False) for key in row_keys)
+    new_state = True if any_disabled else False
+
+    for key in row_keys:
+        plugin_instance.set_setting(key, new_state, reload_settings=True)
+
+
+# lambda works too, but It's better TODO: move to utils
+def open_extera_tab(tab_name: str) -> Callable[[View], None]:
+    def callback(view: View):
+        open_extera_setting(tab_name)
+
+    return callback
+
+
+def open_url_view(url: str) -> Callable[[View], None]:
+    def callback(view: View):
+        open_url(url)
+
+    return callback

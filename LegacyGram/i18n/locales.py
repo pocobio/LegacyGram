@@ -10,7 +10,7 @@ STRINGS = {
         # --- Main Settings List ---
     },
     "en": {
-        # --- General Sub-Page ---
+        # --- Settings Options ---
         "settings_options": "Settings Options",
         "switch_all": "Switch All",
         "hide_premium_row": "Hide Telegram Premium",
@@ -18,39 +18,44 @@ STRINGS = {
         "hide_ton_row": "Hide My TON",
         "hide_business_row": "Hide Telegram Business",
         "hide_send_a_gift_row": "Hide Send a Gift",
+
+        # --- Drawer Options ---
         "drawer_options": "Drawer Options",
         "manage_drawer_options": "Manage Drawer Options",
 
-        # --- Premium Sub-Page ---
-        "profile_color": "Profile Color",
-        "manage_reply_elements": "Manage Reply Elements",
+        # --- Chat List ---
         "chat_list": "Chat List",
         "hide_stories": "Hide Stories",
         "hide_action_bar_status": "Hide Status",
-        "profile_tabs": "Profile Tabs",
-        "hide_stories_tab": "Hide Stories Tab in Profile",
-        "hide_stories_tab_sub": "Does not remove the Stories tab from your profile",
 
-        # --- Gifts Sub-Page ---
-        "gifts_header": "Gifts Tabs, Buttons and etc...",
-        "hide_bottom_gift_button": "Hide Gift Button",
+        # --- Profile Buttons ---
+        "profile_buttons": "Profile Buttons",
+        "hide_profile_actions_gift_button": "Hide Gift button",
+        "hide_profile_actions_stories_button": "Hide Stories button",
+        "hide_profile_actions_stream_button": "Hide Live Stream & Video Chat button",
+
+        # --- Profile Tabs ---
+        "profile_tabs": "Profile Tabs",
+        "hide_stories_tab": "Hide Stories Tab",
+        "hide_stories_tab_sub": "Does not remove the Stories tab from YOUR profile",
         "hide_gifts_tab": "Hide Gifts Tab",
+
+        # --- Profile Appearance ---
+        "profile_appearance": "Profile Appearance",
+        "manage_reply_elements": "Manage Reply Elements",
+
+        # --- Gifts Related ---
+        "gifts_header": "Gifts",
+        "hide_bottom_gift_button": "Hide Gift Button from Input Field",
         "hide_stars_rating": "Hide Stars Rating",
         "hide_action_bar_send_gift": "Hide Send Gift button from Action Bar",
-        "hide_profile_actions_gift_button": "Hide Gift button from Profile",
 
-        # --- About Sub-Page ---
+        # --- About Plugin ---
+        "about_plugin": "About Plugin",
         "client_version": "Client version: {0}",
         "client_version_info": "",
         "github_repository": "Github Repository (Leave a star!)",
         "github_info": "Zero Telemetry, Python modular architecture with custom build script, Ruff linting, and typing stubs for java and android modules",
-
-        # --- Main Settings List ---
-        "settings_related_to": "Setting related to...",
-        "general": "General",
-        "premium": "Premium",
-        "gifts": "Gifts, Stars and TON",
-        "about": "About Plugin",
     }
 }
 # fmt: on
