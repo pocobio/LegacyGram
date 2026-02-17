@@ -17,9 +17,9 @@ boost stuff
 
 project stuff TODO:
 version stuff in toml (building)
-build .plugin
 
 DONE:
+build .plugin
 localization (normal eng and ru)
 remove gift button in profile
 add About Plugin page

@@ -17,7 +17,7 @@ pd - priority dir
 
 # CONFIGURATION
 DIST_DIR = Path("dist")
-OUTPUT_FILENAME = "LegacyGram.py"
+OUTPUT_FILENAME = "LegacyGram.plugin"
 SRC_DIR = Path("LegacyGram")
 
 PRIORITY_FILES = ["header.py"]
