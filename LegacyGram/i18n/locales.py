@@ -1,13 +1,56 @@
-# I wanted to do it's camelCase and using Keys from constants but idk...
 # fmt: off
 STRINGS = {
     "ru": {
-        # --- General Sub-Page ---
-        # --- Premium Sub-Page ---
-        # --- Gifts Sub-Page ---
-        # --- About Sub-Page ---
-        "github_repository": "ахаха",
-        # --- Main Settings List ---
+        # --- Settings Options ---
+        "settings_options": "Меню настроек",
+        "switch_all": "Переключить все",
+        "hide_premium_row": "Скрыть \"Telegram Premium\"",
+        "hide_stars_row": "Скрыть \"Мои Звёзды\"",
+        "hide_ton_row": "Скрыть \"Мои TON\"",
+        "hide_business_row": "Скрыть \"Telegram для бизнеса\"",
+        "hide_send_a_gift_row": "Скрыть \"Отправить подарок\"",
+
+        # --- Drawer Options ---
+        "drawer_options": "Боковое меню",
+        "manage_drawer_options": "Настройка бокового меню",
+
+        # --- Chat List ---
+        "chat_list": "Список чатов",
+        "hide_stories": "Скрыть Истории",
+        "hide_action_bar_status": "Скрыть статус",
+
+        # --- Profile Buttons ---
+        "profile_buttons": "Кнопки в профиле",
+        "hide_profile_actions_gift_button": "Скрыть кнопку отправки подарка",
+        "hide_profile_actions_stories_button": "Скрыть кнопку новой истории",
+        "hide_profile_actions_stream_button": "Скрыть кнопки трансляции и видеочата",
+
+        # --- Profile Tabs ---
+        "profile_tabs": "Вкладки в профиле",
+        "hide_stories_tab": "Скрыть Истории",
+        "hide_stories_tab_sub": "Не убирает вкладку историй из ВАШЕГО профиля!",
+        "hide_gifts_tab": "Скрыть Подарки",
+
+        # --- Profile Appearance ---
+        "profile_appearance": "Оформление профиля",
+        "manage_reply_elements": "Настройка оформления ответов",
+
+        # --- Gifts Related ---
+        "gifts": "Подарки",
+        "hide_bottom_gift_button": "Скрыть кнопку подарка в поле ввода",
+        "hide_stars_rating": "Скрыть рейтинг звёзд",
+        "hide_action_bar_send_gift": "Скрыть \"Отправить подарок\" в тулбаре",
+
+        # --- About Plugin ---
+        "about_plugin": "О Плагине",
+        "client_version": "Версия клиента: {0}",
+        "version_ok_title": "Полная совместимость",
+        "version_ok_message": "Вы используете рекомендуемую версию клиента {0}! Это последняя сборка без интеграции \"Liquid Glass UI\"",
+        "version_warn_title": "Потенциальная нестабильность",
+        "version_warn_message": "Вы используете {0} с новым \"Liquid Glass UI\". "
+                                "Плагин сохраняет работоспособность, но рекомендуемая версия 12.1.1",
+        "github_repository": "Репозиторий на Github (Поставьте звезду!)",
+        "github_sub": "Никакой телеметрии, Модульная архитектура на Python, кастомный скрипт для сборки, Ruff-линтинг и типизация для java и android модулей",
     },
     "en": {
         # --- Settings Options ---

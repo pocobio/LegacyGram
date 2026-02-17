@@ -9,17 +9,18 @@ __min_version__ = "12.1.1"
 """
 TODO:
 remove premium emoji in nickname
-remove profile colors in Profile (already implemented in replies via Extera)
+remove profile colors in Profile (already implemented in replies via extera)
 remove some bulletins?
-localization (normal eng and ru)
 take etg icon from current icon pack if exist (check for versions since here new icon pack system)
 rename all classes
+boost stuff
 
 project stuff TODO:
 version stuff in toml (building)
 build .plugin
 
 DONE:
+localization (normal eng and ru)
 remove gift button in profile
 add About Plugin page
 remove cached_lang
