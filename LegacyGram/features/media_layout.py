@@ -23,40 +23,31 @@ TL_profileTabGifts = find_class("org.telegram.tgnet.TLRPC$TL_profileTabGifts")
 TL_profileTabPosts = find_class("org.telegram.tgnet.TLRPC$TL_profileTabPosts")
 
 
-class SharedMediaLayoutConstructorHook(BaseHook):
+class SharedMediaLayoutHook(BaseHook):
+    def __init__(self, plugin, is_constructor: bool):
+        super().__init__(plugin)
+        self.is_constructor = is_constructor
+
+    def _get_info_objects(self, param) -> tuple[Any, Any]:
+        if self.is_constructor:
+            return param.args[5], param.args[6]
+        else:
+            # updateTabs: info stored in instance fields
+            layout = param.thisObject
+            chat_info = get_private_field(layout, "info")
+            user_info = get_private_field(layout, "userInfo")
+            return chat_info, user_info
+
     def before_hooked_method(self, param) -> None:
         hide_gifts = self.plugin.get_setting(Keys.Gifts.hide_gifts_tab, False)
         hide_stories = self.plugin.get_setting(Keys.Premium.hide_stories_tab, False)
+
         if not hide_gifts and not hide_stories:
             return
 
-        chat_info = param.args[5]  # TLRPC.ChatFull chatInfo
-        user_info = param.args[6]  # TLRPC.UserFull userInfo
+        chat_info, user_info = self._get_info_objects(param)
 
-        # log(user_info)
-        possible_targets = [chat_info, user_info]
-
-        for target in possible_targets:
-            if hide_gifts:
-                remove_gifts(target)
-            if hide_stories:
-                remove_stories(target)
-
-
-class SharedMediaLayoutUpdateTabsHook2(BaseHook):
-    def before_hooked_method(self, param) -> None:
-        hide_gifts = self.plugin.get_setting(Keys.Gifts.hide_gifts_tab, False)
-        hide_stories = self.plugin.get_setting(Keys.Premium.hide_stories_tab, False)
-        if not hide_gifts and not hide_stories:
-            return
-
-        layout = param.thisObject
-        user_info = get_private_field(layout, "userInfo")  # org.telegram.tgnet.TLRPC$TL_userFull
-        chat_info = get_private_field(layout, "info")  # not a user (channel, chats..)
-
-        possible_targets = [chat_info, user_info]
-
-        for target in possible_targets:
+        for target in [chat_info, user_info]:
             if hide_gifts:
                 remove_gifts(target)
             if hide_stories:
@@ -103,8 +94,12 @@ def remove_stories(obj: Any):
 def register_media_layout(plugin) -> None:
     SharedMediaLayout = find_class("org.telegram.ui.Components.SharedMediaLayout")
     if SharedMediaLayout:
-        plugin.hook_all_constructors(SharedMediaLayout, SharedMediaLayoutConstructorHook(plugin))
-        plugin.hook_all_methods(SharedMediaLayout, "updateTabs", SharedMediaLayoutUpdateTabsHook2(plugin))
+        constructor_hook = SharedMediaLayoutHook(plugin, is_constructor=True)
+        plugin.hook_all_constructors(SharedMediaLayout, constructor_hook)
+
+        update_tabs_hook = SharedMediaLayoutHook(plugin, is_constructor=False)
+        plugin.hook_all_methods(SharedMediaLayout, "updateTabs", update_tabs_hook)
+
         info_hook = SharedMediaLayoutSetInfoHook(plugin, Keys.Premium.hide_stories_tab)
         plugin.hook_all_methods(SharedMediaLayout, "setChatInfo", info_hook)
         plugin.hook_all_methods(SharedMediaLayout, "setUserInfo", info_hook)
