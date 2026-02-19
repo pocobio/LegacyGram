@@ -33,3 +33,7 @@ Result of building will be saved at `dist/LegacyGram.plugin`
 ## Debugging
 refer [exteraGram documentation](https://plugins.exteragram.app/docs/setup)
 
+
+## License 
+This project is licensed under the **MIT License**.  
+See the [LICENSE](LICENSE) file for details.
