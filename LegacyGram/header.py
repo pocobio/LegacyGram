@@ -1,6 +1,6 @@
 __name__ = "LegacyGram"
 __description__ = "A highly customizable plugin to remove paid and bloated features from Telegram"
-__version__ = "0.1.38"
+__version__ = "0.1.66"
 __id__ = "legacygram"
 __author__ = "@wepinek"
 __icon__ = "LegacyGram/0"
@@ -18,6 +18,7 @@ project stuff TODO:
 none
 
 DONE:
+action bar refactor
 rename all classes
 version stuff in toml (building)
 build .plugin
