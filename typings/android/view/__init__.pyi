@@ -1,4 +1,6 @@
 class View:
-    """Standard Android View from https://developer.android.com/reference/android/view/View"""
+    VISIBLE: int = 0
+    INVISIBLE: int = 4
+    GONE: int = 8
 
-    ...
+    def setVisibility(self, visibility: int) -> None: ...
