@@ -1,4 +1,5 @@
 from hook_utils import find_class, get_private_field
+from java import jint
 
 from LegacyGram.data.constants import Keys
 from LegacyGram.utils.xposed_utils import BaseHook
@@ -22,7 +23,7 @@ class ProfileGiftsViewUpdateHook(BaseHook):
         -> Creates Gift objects and adds to gifts ArrayList
         -> dispatchDraw() renders them around avatar
 
-    so we just clear a array with gifts and redraw View
+    so we just clear an array with gifts and redraw View
     """
 
     def after_hooked_method(self, param):
@@ -30,8 +31,6 @@ class ProfileGiftsViewUpdateHook(BaseHook):
             return
 
         instance = param.thisObject
-        if instance is None:
-            return
 
         try:
             gifts = get_private_field(instance, "gifts")
@@ -65,6 +64,20 @@ class ChatMessageCellSetMessageObjectInternalHook(BaseHook):
             message_owner.from_boosts_applied = 0
 
 
+class UserObjectGetProfileColorIdHook(BaseHook):
+    def before_hooked_method(self, param):
+        if not self.is_enabled():
+            return
+        param.setResult(jint(-1))
+
+
+class ChatObjectGetProfileColorIdHook(BaseHook):
+    def before_hooked_method(self, param):
+        if not self.is_enabled():
+            return
+        param.setResult(jint(-1))
+
+
 def register_profile_appearance(plugin) -> None:
     # Profile Background Emoji
     StarGiftPatterns = find_class("org.telegram.ui.Stars.StarGiftPatterns")
@@ -82,3 +95,12 @@ def register_profile_appearance(plugin) -> None:
     ChatMessageCell = find_class("org.telegram.ui.Cells.ChatMessageCell")
     if ChatMessageCell:
         plugin.hook_all_methods(ChatMessageCell, "setMessageObjectInternal", ChatMessageCellSetMessageObjectInternalHook(plugin, Keys.hide_boost_badge))
+
+    # Profile Colorful Background
+    UserObject = find_class("org.telegram.messenger.UserObject")
+    ChatObject = find_class("org.telegram.messenger.ChatObject")
+
+    if UserObject:
+        plugin.hook_all_methods(UserObject, "getProfileColorId", UserObjectGetProfileColorIdHook(plugin, Keys.hide_profile_colorful_background))
+    if ChatObject:
+        plugin.hook_all_methods(ChatObject, "getProfileColorId", ChatObjectGetProfileColorIdHook(plugin, Keys.hide_profile_colorful_background))

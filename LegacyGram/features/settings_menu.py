@@ -1,6 +1,5 @@
 from hook_utils import find_class, get_private_field, set_private_field
 from java import jint
-from ui.bulletin import BulletinHelper
 
 from LegacyGram.data.constants import Keys
 from LegacyGram.utils.xposed_utils import BaseHook
@@ -92,8 +91,8 @@ class ProfileActivityUpdateRowsIdsHook(BaseHook):
             if rows_removed > 0:
                 set_private_field(instance, "rowCount", jint(row_count))
 
-        except Exception as e:
-            BulletinHelper.show_error(f"Error in settings menu cleanup: {e}")
+        except Exception:
+            pass
 
 
 def register_settings_menu(plugin) -> None:

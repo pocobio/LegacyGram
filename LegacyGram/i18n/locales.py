@@ -37,6 +37,7 @@ STRINGS = {
         "hide_profile_background_emoji": "Скрыть фоновый эмодзи",
         "hide_profile_background_emoji_sub": "Те, что вокруг аватара",
         "hide_profile_pinned_gifts": "Скрыть подарки вокруг аватара",
+        "hide_profile_colorful_background": "Скрыть цветной фон",
         "hide_boost_badge": "Скрыть значок буста",
 
         # --- Action Bar ---
@@ -100,6 +101,7 @@ STRINGS = {
         "hide_profile_background_emoji": "Hide Profile Icons",
         "hide_profile_background_emoji_sub": "That ones around avatar",
         "hide_profile_pinned_gifts": "Hide Gifts Around Avatar",
+        "hide_profile_colorful_background": "Hide Colorful Background",
         "hide_boost_badge": "Hide Boost Badge",
 
         # --- Action Bar ---
