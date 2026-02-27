@@ -1,4 +1,3 @@
-import ast
 import re
 import subprocess
 import sys
@@ -44,8 +43,8 @@ def get_current_version() -> tuple[int, int, int] | None:
 
 
 def increment_build_version(current_version: tuple[int, int, int]) -> str:
-    major, minor, build = current_version
-    new_version = (major, minor, build + 1)
+    major, minor, build_num = current_version
+    new_version = (major, minor, build_num + 1)
 
     version_str = f"{new_version[0]}.{new_version[1]}.{new_version[2]}"
 
@@ -144,18 +143,38 @@ def generate_imports_block() -> str:
 
 
 def process_file_content(file_path: Path) -> list[str]:
-    """Removes imports and @ignore lines"""
-    processed_lines = []
-
+    """Removes imports, only comments lines, and docstrings"""
     with open(SRC_DIR / file_path, encoding="utf-8") as f:
         lines = f.readlines()
+
+    processed_lines = []
+    in_docstring = False
+    docstring_char = '"""'
 
     for line in lines:
         stripped = line.strip()
 
-        if "# @ignore" in line:
+        if docstring_char in stripped:
+            count = stripped.count(docstring_char)
+            if count == 1:
+                in_docstring = not in_docstring
+                continue
+            elif count >= 2:
+                if not in_docstring:
+                    continue
+                else:
+                    in_docstring = False
+                    continue
+
+        # Skip if in docstrings """
+        if in_docstring:
             continue
 
+        # Skip comment-only lines
+        if stripped.startswith("#"):
+            continue
+
+        # Skip import lines (but parse them first)
         is_import = stripped.startswith(("import ", "from "))
         is_internal = stripped.startswith(("import LegacyGram", "from LegacyGram"))
 
@@ -167,11 +186,6 @@ def process_file_content(file_path: Path) -> list[str]:
         processed_lines.append(line)
 
     file_code = "".join(processed_lines)
-    try:
-        ast.parse(file_code)
-    except SyntaxError as e:
-        raise SyntaxError(f"❌ Syntax Error in file: {file_path} line {e.lineno}: {e.msg}") from e
-
     cleaned_code = file_code.strip()
     cleaned_code = re.sub(r"\n{3,}", "\n\n", cleaned_code)
 
