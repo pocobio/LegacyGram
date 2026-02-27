@@ -1,4 +1,3 @@
-from android_utils import log
 from base_plugin import MethodHook
 
 
@@ -13,6 +12,6 @@ class BaseHook(MethodHook):
         return self.plugin.get_setting(self.setting_key, False)
 
 
-class ReadArgsHook(MethodHook):
-    def before_hooked_method(self, param):
-        log(param.args)
+# class ReadArgsHook(MethodHook):
+#     def before_hooked_method(self, param):
+#         log(param.args)
