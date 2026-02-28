@@ -1,5 +1,5 @@
 # LegacyGram Plugin
-A highly customizable plugin for [exteraGram](https://exteragram.app) to remove paid and bloated features from the Android Telegram client 
+A highly customizable plugin for [exteraGram](https://exteragram.app) based clients to remove paid and bloated features from the Android Telegram client 
 
 
 ## Screenshots
