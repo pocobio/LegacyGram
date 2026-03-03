@@ -34,6 +34,7 @@ class Keys:
     hide_profile_pinned_gifts = "hideProfilePinnedGifts"
     hide_profile_colorful_background = "hideProfileColorfulBackground"
     hide_boost_badge = "hideBoostBadge"
+    hide_gift_hint = "hideGiftHint"
 
     # --- Action Bar ---
     hide_action_bar_live_stream = "hideActionBarLiveStream"

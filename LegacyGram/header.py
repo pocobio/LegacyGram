@@ -1,6 +1,6 @@
 __name__ = "LegacyGram"
 __description__ = "A highly customizable plugin to remove paid and bloated features from Telegram"
-__version__ = "0.3.4"
+__version__ = "0.3.44"
 __id__ = "legacygram"
 __author__ = "@wepinek"
 __icon__ = "LegacyGram/0"
@@ -9,6 +9,8 @@ __min_version__ = "12.1.1"
 """
 TODO:
 remove premium emoji in nickname
+remove stars reaction
+hide some annoying prompts to upgrade to premium (like buttons how? or similar)
 
 project stuff TODO:
 none

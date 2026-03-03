@@ -51,6 +51,7 @@ STRINGS = {
         # --- Gifts Related ---
         "gifts": "Подарки",
         "hide_bottom_gift_button": "Скрыть кнопку подарка в поле ввода",
+        "hide_gift_hint": "Скрыть подсказку о подарке над эмодзи статусом",
         "hide_stars_rating": "Скрыть рейтинг звёзд",
 
         # --- About Plugin ---
@@ -116,6 +117,7 @@ STRINGS = {
         # --- Gifts Related ---
         "gifts": "Gifts",
         "hide_bottom_gift_button": "Hide Gift Button from Input Field",
+        "hide_gift_hint": "Hide Gift Hint Above Emoji Status",
         "hide_stars_rating": "Hide Stars Rating",
 
         # --- About Plugin ---
