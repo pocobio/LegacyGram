@@ -39,6 +39,7 @@ STRINGS = {
         "hide_profile_pinned_gifts": "Скрыть подарки вокруг аватара",
         "hide_profile_colorful_background": "Скрыть цветной фон",
         "hide_boost_badge": "Скрыть значок буста",
+        "hide_premium_badge": "TEMP: use eng",
 
         # --- Action Bar ---
         "action_bar": "Три точки",
@@ -105,6 +106,8 @@ STRINGS = {
         "hide_profile_pinned_gifts": "Hide Gifts Around Avatar",
         "hide_profile_colorful_background": "Hide Colorful Background",
         "hide_boost_badge": "Hide Boost Badge",
+        "hide_premium_badge": "Hide Premium Badge",
+        "TEMP_hide_premium_badge_sub": "REMOVES ONLY IN CHATS FOR NOW, HAS WIP EXTERABADGE SUPPORT",
 
         # --- Action Bar ---
         "action_bar": "Three dots",
