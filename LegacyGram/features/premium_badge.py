@@ -3,9 +3,6 @@ from hook_utils import find_class, get_private_field
 from LegacyGram.data.constants import Keys
 from LegacyGram.utils.xposed_utils import BaseHook
 
-# Telegram R class for string resources
-R = None
-
 """
 EXPLANATION
 MessageCell.GetAuthorStatus() # WORKS ONLY IN CHATS!
@@ -22,36 +19,41 @@ UserObject.GetEmojiStatusDocumentIdHook() # Only 5 calls
         messages in chats, drawer menu, chat list, title in chat list (search is not effected)
 
 DialogObject.GetEmojiStatusDocumentIdHook() has over then 52 calls
+
+WIP!!! 
+CURRENT STATUS:
+if user has badge and premium: full work everywhere  
+if user hasn't badge but has premium: shows a msg_premium_liststar (TODO: remove it)
+if user has badge: show badge
 """
 
-"""
-TODO: if you click on badge, you got wrong logic.
-Solution: see didPressUserStatus in ChatActivity using JADX
 
-if (!user.premium || DialogObject.getEmojiStatusDocumentId(user.emoji_status) == 0) {
-    BadgesController badgesController = BadgesController.INSTANCE;
-    BadgeDTO badge = badgesController.getBadge(user);
-    if (badge != null) {
-        boolean zIsDeveloper = badgesController.isDeveloper(user);
-        BulletinFactory bulletinFactoryOf = BulletinFactory.of(ChatActivity.this);
-        TLRPC.Document documentFindDocument = AnimatedEmojiDrawable.findDocument(((BaseFragment) ChatActivity.this).currentAccount, badge.getDocumentId());
-        if (badge.getText() != null) {
-            string = LocaleUtils.formatWithUsernames(badge.getText());
-        } else {
-            string = LocaleController.formatString(zIsDeveloper ? R.string.Developer : R.string.Supporter, user.first_name);
+class UserObjectGetEmojiStatusDocumentIdHook(BaseHook):
+    def before_hooked_method(self, param):
+        if not self.is_enabled():
+            return
+        param.setResult(None)
+
+
+class DialogObjectGetEmojiStatusDocumentIdHook(BaseHook):
+    """
+    Also fixes the issue when you click on badge in chat, you got wrong logic
+    ref: see didPressUserStatus in ChatActivity using JADX
+    if (!user.premium || DialogObject.getEmojiStatusDocumentId(user.emoji_status) == 0) {
+        BadgesController badgesController = BadgesController.INSTANCE;
+        BadgeDTO badge = badgesController.getBadge(user);
+        if (badge != null) {
+            // We showing here stuff
+            return;
         }
-        bulletinFactoryOf.createEmojiBulletin(documentFindDocument, string, zIsDeveloper ? null : LocaleController.getString(R.string.FragmentUsernameOpen),
-        new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$didPressUserStatus$6();
-            }
-        }).show();
         return;
     }
-    return;
-}
-"""
+    """
+
+    def before_hooked_method(self, param):
+        if not self.is_enabled():
+            return
+        param.setResult(0)
 
 
 class ChatMessageCellGetAuthorStatusHook(BaseHook):
@@ -105,3 +107,11 @@ def register_premium_badge(plugin) -> None:
     ChatMessageCell = find_class("org.telegram.ui.Cells.ChatMessageCell")
     if ChatMessageCell:
         plugin.hook_all_methods(ChatMessageCell, "getAuthorStatus", ChatMessageCellGetAuthorStatusHook(plugin, Keys.hide_premium_badge))
+
+    DialogObject = find_class("org.telegram.messenger.DialogObject")
+    if DialogObject:
+        plugin.hook_all_methods(DialogObject, "getEmojiStatusDocumentId", DialogObjectGetEmojiStatusDocumentIdHook(plugin, Keys.hide_premium_badge))
+
+    UserObject = find_class("org.telegram.messenger.UserObject")
+    if UserObject:
+        plugin.hook_all_methods(UserObject, "getEmojiStatusDocumentId", UserObjectGetEmojiStatusDocumentIdHook(plugin, Keys.hide_premium_badge))
