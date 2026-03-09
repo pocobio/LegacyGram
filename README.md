@@ -3,11 +3,10 @@ A highly customizable plugin for [exteraGram](https://exteragram.app) based clie
 
 
 ## Screenshots
-later
 
-
-## Features
-later
+|                                    |                                    |                                    |
+|:----------------------------------:|:----------------------------------:|:----------------------------------:|
+| ![preview_1](images/preview_1.png) | ![preview_2](images/preview_2.png) | ![preview_3](images/preview_3.png) |
 
 
 ## Building
