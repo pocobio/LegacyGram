@@ -2,6 +2,22 @@ from typing import Any
 
 from java.lang import Class, String
 
+class Modifier:
+    """Java reflection Modifier constants"""
+
+    PUBLIC: int = 1
+    PRIVATE: int = 2
+    PROTECTED: int = 4
+    STATIC: int = 8
+    FINAL: int = 16
+    SYNCHRONIZED: int = 32
+    VOLATILE: int = 64
+    TRANSIENT: int = 128
+    NATIVE: int = 256
+    INTERFACE: int = 512
+    ABSTRACT: int = 1024
+    STRICTFP: int = 2048
+
 class Member:
     """
     Member is an interface that reflects identifying information about
