@@ -4,7 +4,7 @@ from ui.settings import Divider, Header, Text
 
 from LegacyGram.data.constants import GITHUB_URL, Keys
 from LegacyGram.i18n.i18n import t
-from LegacyGram.utils.settings_utils import Switch, check_version, open_extera_tab, open_url_view, open_version_info, switch_rows
+from LegacyGram.utils.settings_utils import Switch, check_version, open_extera_tab, open_url_view, open_version_info, show_restart_bulletin, switch_rows
 from LegacyGram.utils.utils import get_client_version
 
 
@@ -48,7 +48,7 @@ def get_main_settings_list() -> list[Any]:
         Switch(text=t("hide_profile_colorful_background"), key=Keys.hide_profile_colorful_background),
         Switch(text=t("hide_boost_badge"), key=Keys.hide_boost_badge),
         Switch(text=t("hide_gift_hint"), key=Keys.hide_gift_hint),
-        Switch(text=t("hide_premium_badge"), subtext=t("hide_premium_badge_sub"), key=Keys.hide_premium_badge),
+        Switch(text=t("hide_premium_badge"), subtext=t("hide_premium_badge_sub"), on_change=show_restart_bulletin, key=Keys.hide_premium_badge),
         #
         Header(text=t("action_bar")),
         Switch(text=t("hide_action_bar_live_stream"), key=Keys.hide_action_bar_live_stream),

@@ -2,14 +2,16 @@ from collections.abc import Callable
 
 from android.view import View
 from client_utils import get_last_fragment
+from org.telegram.messenger import R as R_tg  # ty: ignore
 from ui.alert import AlertDialogBuilder
+from ui.bulletin import BulletinHelper
 from ui.settings import Switch as BaseSwitch
 
 from LegacyGram.data.constants import Keys
 from LegacyGram.i18n.i18n import t
 from LegacyGram.main import LegacyGramPlugin
 from LegacyGram.utils.extera_utils import open_extera_setting
-from LegacyGram.utils.utils import open_url, parse_version
+from LegacyGram.utils.utils import open_url, parse_version, restart_app
 
 
 def Switch(
@@ -86,3 +88,7 @@ def open_url_view(url: str) -> Callable[[View], None]:
         open_url(url)
 
     return callback
+
+
+def show_restart_bulletin(enabled: bool) -> None:
+    BulletinHelper.show_with_button(text=t("restart_required"), button_text=t("restart"), icon_res_id=R_tg.raw.info, on_click=lambda: restart_app())

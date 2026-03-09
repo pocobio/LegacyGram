@@ -3,7 +3,7 @@ from hook_utils import find_class, get_private_field
 from LegacyGram.data.constants import Keys
 from LegacyGram.utils.xposed_utils import BaseHook
 
-'''
+"""
 EXPLANATION
 MessageCell.GetAuthorStatus() # Works only in chats!
     -> if user not null -> call UserObject.GetEmojiStatusDocumentId & exteraBadge
@@ -25,7 +25,7 @@ Some Solution: instead remove premium badge in all places, just hook isPremiumUs
 If you want to go without isPremiumUser hook:
 hook ProfileActivityGetEmojiStatusDrawable for Hide Premium Badge in Profile (setResult(None) before_hooked)
 hook ChatAvatarContainerSetTitleHook for hide premium badge in chat header (param.args[4] = False before_hooked)
-'''
+"""
 
 
 class ProfileActivitySetCollectibleGiftStatusHook(BaseHook):

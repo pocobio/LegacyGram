@@ -69,6 +69,10 @@ STRINGS = {
         "github_repository": "Репозиторий на Github (Поставьте ⭐!)",
         "github_sub": "Никакой телеметрии, модульная архитектура на Python, "
                       "кастомный скрипт для сборки, Ruff-линтинг и типизация для java, xposed и android модулей",
+
+        # --- Bulletins ---
+        "restart_required": "Перезапустите приложение, чтобы изменения вступили в силу.",
+        "restart": "ПЕРЕЗАПУСТИТЬ"
     },
     "en": {
         # --- Settings Options ---
@@ -139,6 +143,10 @@ STRINGS = {
         "github_repository": "Github Repository (Leave a ⭐!)",
         "github_sub": "Zero Telemetry, Python modular architecture with custom build script, "
                       "Ruff linting, and typing stubs for java, xposed and android modules",
+
+        # --- Bulletins ---
+        "restart_required": "Restart the app for changes to take effect.",
+        "restart": "RESTART"
     }
 }
 # fmt: on
