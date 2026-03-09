@@ -61,7 +61,7 @@ def increment_build_version(current_version: tuple[int, int, int]) -> str:
 
 
 def run_linter():
-    print("🔍 Running Ruff...")
+    print("🔍 Running Ruff and ty...")
 
     subprocess.run(["ruff", "check", ".", "--fix"], capture_output=True)
     subprocess.run(["ruff", "format", "."], capture_output=True)
@@ -69,7 +69,13 @@ def run_linter():
     result = subprocess.run(["ruff", "check", "."], capture_output=True, text=True)
 
     if result.returncode != 0:
-        print(f"❌ Issues found:\n{result.stdout}")
+        print(f"❌ Ruff issues found:\n{result.stdout}")
+        return False
+
+    ty_result = subprocess.run(["ty", "check"], capture_output=True, text=True)
+
+    if ty_result.returncode != 0:
+        print(f"❌ Type issues found:\n{ty_result.stdout}")
         return False
 
     print("✅ Code is clean. Proceeding to build...")
