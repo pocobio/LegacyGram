@@ -72,7 +72,10 @@ STRINGS = {
 
         # --- Bulletins ---
         "restart_required": "Перезапустите приложение, чтобы изменения вступили в силу.",
-        "restart": "ПЕРЕЗАПУСТИТЬ"
+        "restart": "ПЕРЕЗАПУСТИТЬ",
+
+        # --- Other ---
+        "feature_unavailable": "Эта функция не поддерживается на новых клиентах с \"Liquid Glass UI\" редизайном."
     },
     "en": {
         # --- Settings Options ---
@@ -146,7 +149,10 @@ STRINGS = {
 
         # --- Bulletins ---
         "restart_required": "Restart the app for changes to take effect.",
-        "restart": "RESTART"
+        "restart": "RESTART",
+
+        # --- Other ---
+        "feature_unavailable": "This feature is not supported on new version with \"Liquid Glass UI\" redesign."
     }
 }
 # fmt: on

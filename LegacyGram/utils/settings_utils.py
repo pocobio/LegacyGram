@@ -31,7 +31,7 @@ def Switch(
     return BaseSwitch(key=key, text=text, default=default, subtext=subtext, icon=icon, on_change=on_change, on_long_click=on_long_click, link_alias=link_alias)
 
 
-def check_version(version: str) -> bool:
+def is_not_12_1_1_version(version: str) -> bool:
     if parse_version(version) == (12, 1, 1):
         return False
     return True

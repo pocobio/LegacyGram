@@ -1,6 +1,6 @@
 __name__ = "LegacyGram"
 __description__ = "A highly customizable plugin to **remove paid and bloated features** from Telegram.\n**Recommended version:** 12.1.1"
-__version__ = "0.5.32"
+__version__ = "0.5.50"
 __id__ = "legacygram"
 __author__ = "@wepinek"
 __icon__ = "LegacyGram/0"
@@ -8,31 +8,7 @@ __min_version__ = "12.1.1"
 
 """
 TODO:
-fix my profile (remove posts and archived posts)
-hide some annoying prompts to upgrade to premium (like buttons how? or similar)
-
-project stuff TODO:
-none
-
-DONE:
-add Use 12.1.1 version to desc
-remove stars reaction
-remove premium emoji in nickname
-boost stuff (already removed boost group from action bar and boost badge)
-remove profile colors in Profile (already implemented in replies via extera)
-remove emoji icons from profile
-remove pinned gifts from profile
-action bar refactor
-rename all classes
-version stuff in toml (building)
-build .plugin
-localization (normal eng and ru)
-remove gift button in profile
-add About Plugin page
-remove cached_lang
-12.1.1 ver
-
-NOT PLANNED:
-take etg icon from current icon pack if exist (check for versions since here new icon pack system): useless
-remove some bulletins? (non-premium only): useless
+Remove posts and archived posts from My profile tab
+Hide some annoying prompts to upgrade to premium (like buttons `how?`)
+Remove tags from Saved Messages
 """

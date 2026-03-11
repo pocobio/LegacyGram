@@ -9,7 +9,7 @@ def get_system_language() -> str:
     global _Locale
     try:
         if _Locale is None:
-            _Locale = find_class("java.util.Locale")  # TODO FIX THIS OMG
+            _Locale = find_class("java.util.Locale")
 
         if not _Locale:
             return "en"
