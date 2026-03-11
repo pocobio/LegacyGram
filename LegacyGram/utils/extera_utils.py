@@ -24,9 +24,12 @@ def resolve_extera_function(function_name: str) -> str:
     try:
         client_version = parse_version(get_client_version())
 
-        if client_version == (12, 1, 1):
-            if function_name == Keys.drawer_options:
+        if function_name == Keys.drawer_options:
+            if client_version == (12, 1, 1):
                 return "myProfileItem"
+            if client_version == (12, 4, 1):
+                return "mainMenuSettings"
+
     except Exception:
         pass
 
