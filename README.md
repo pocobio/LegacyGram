@@ -3,6 +3,8 @@ A highly customizable plugin for [exteraGram](https://exteragram.app) based clie
 
 **Recommended version:** `12.1.1`
 
+[Download from Official exteraGram Plugins Channel](https://t.me/exteraPluginsSup/611)
+
 ## Screenshots & Features
 
 |                                    |                                    |                                    |
