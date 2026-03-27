@@ -223,16 +223,16 @@ def build():
 
     if not SRC_DIR.exists():
         print(f"❌ Error: Source directory '{SRC_DIR}' not found!")
-        return
+        sys.exit(1)
 
     if not HEADER_FILE.exists():
         print(f"❌ Error: Header file '{HEADER_FILE}' not found!")
-        return
+        sys.exit(1)
 
     current_version = get_current_version()
     if not current_version:
         print("❌ Error: Can't find __version__ field in header!")
-        return
+        sys.exit(1)
 
     if args.no_bump:
         new_version = f"{current_version[0]}.{current_version[1]}.{current_version[2]}"
